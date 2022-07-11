@@ -5,9 +5,9 @@ namespace BankManagment.Models.BankAccount.Currencies.Abstract
 {
     public class Currency : NotifyPropertyChanged
     {
-        private float amount;
+        private decimal amount;
 
-        public Currency(string name, int currencyCode, float amount) 
+        public Currency(string name, int currencyCode, decimal amount) 
         {
             Name = name;
             CurrencyCode = currencyCode;
@@ -16,7 +16,7 @@ namespace BankManagment.Models.BankAccount.Currencies.Abstract
 
         public string Name { get; }
         public int CurrencyCode { get; }
-        public float Amount 
+        public decimal Amount 
         {
             get => amount;
             private set => SetProperty(ref amount, value); 
@@ -26,7 +26,7 @@ namespace BankManagment.Models.BankAccount.Currencies.Abstract
         /// Пополняет счет на сумму
         /// </summary>
         /// <param name="amount">Сумма</param>
-        public void Credit(float amount)
+        public void Credit(decimal amount)
         {
             Amount += amount;
         }
@@ -36,7 +36,7 @@ namespace BankManagment.Models.BankAccount.Currencies.Abstract
         /// </summary>
         /// <param name="amount">Сумма</param>
         /// <exception cref="EmptyAmountException"></exception>
-        public void Debit(float amount)
+        public void Debit(decimal amount)
         {
             if (Amount - amount < 0) 
                 throw new EmptyAmountException();

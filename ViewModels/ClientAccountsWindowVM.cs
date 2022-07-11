@@ -17,9 +17,9 @@ namespace BankManagment.ViewModels
 {
     internal class ClientAccountsWindowVM : ViewModel
     {
-        private float amount;
-        private float amountDeposit;
-        private float amountToSend;
+        private decimal amount;
+        private decimal amountDeposit;
+        private decimal amountToSend;
 
         private Client client;
         private Client? selectedClient;
@@ -47,19 +47,19 @@ namespace BankManagment.ViewModels
         public ICommand SendMoneyCommand => sendMoneyCommand ??= new RelayCommand(SendMoney);
         public ICommand DepositCommand => depositCommand ??= new RelayCommand(Deposit, CanDeposit);
 
-        public float Amount 
+        public decimal Amount 
         {
             get => amount;
             set => SetProperty(ref amount, value);
         }
 
-        public float AmountDeposit 
+        public decimal AmountDeposit 
         {
             get => amountDeposit;
             set => SetProperty(ref amountDeposit, value);
         }
 
-        public float AmountToSend
+        public decimal AmountToSend
         {
             get => amountToSend;
             set => SetProperty(ref amountToSend, value);
@@ -76,7 +76,8 @@ namespace BankManagment.ViewModels
             set
             {
                 SetProperty(ref selectedFromAccount, value);
-                selectedFromAccount.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
+                if(selectedFromAccount != null)
+                    selectedFromAccount.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
             } 
         }
         public BankAccountBase? SelectedToAccount 
@@ -85,7 +86,8 @@ namespace BankManagment.ViewModels
             set
             {
                 SetProperty(ref selectedToAccount, value);
-                selectedToAccount.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
+                if (selectedToAccount != null)
+                    selectedToAccount.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
             }
         }
 
@@ -212,7 +214,12 @@ namespace BankManagment.ViewModels
             var oldClient = client.Copy();
             try
             {
-                selectedFromAccount?.Deposit(float.Parse(obj?.ToString()));
+                decimal amount = 0;
+
+                if(obj != null)
+                    _ = decimal.TryParse(obj.ToString(), out amount);
+
+                selectedFromAccount?.Deposit(amount);
             }
             catch(Exception e)
             {

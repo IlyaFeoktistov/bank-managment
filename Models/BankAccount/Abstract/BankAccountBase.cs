@@ -2,7 +2,6 @@
 using BankManagment.Models.BankAccount.Currencies.Exceptions;
 using BankManagment.Models.BankAccount.Exceptions;
 using BankManagment.Models.Clients;
-using BankManagment.Models.Users.Abstract;
 using BankManagment.Services.NotifyPropertyChanged;
 
 namespace BankManagment.Models.BankAccount.Abstract
@@ -43,7 +42,7 @@ namespace BankManagment.Models.BankAccount.Abstract
         /// <param name="fromAccount">С какого счета</param>
         /// <param name="amount">Сумма</param>
         /// <exception cref="IsClosedException"></exception>
-        public void GetMoney<T>(T fromAccount, float amount) where T : BankAccountBase
+        public void GetMoney<T>(T fromAccount, decimal amount) where T : BankAccountBase
         {
             if (IsClosed) throw new IsClosedException();
             
@@ -57,7 +56,7 @@ namespace BankManagment.Models.BankAccount.Abstract
         /// <param name="toAccount">На какой счет</param>
         /// <param name="amount">Сумма</param>
         /// <exception cref="EmptyAmountException"></exception>
-        public void SendMoney<T>(T toAccount, float amount) where T : BankAccountBase
+        public void SendMoney<T>(T toAccount, decimal amount) where T : BankAccountBase
         {
             if (IsClosed) throw new IsClosedException();
             if (toAccount is null || toAccount.Equals(this)) return;
@@ -74,7 +73,7 @@ namespace BankManagment.Models.BankAccount.Abstract
             toAccount.GetMoney(this, amount);
         }
 
-        public void Deposit(float amount)
+        public void Deposit(decimal amount)
         {
             if (IsClosed) throw new IsClosedException();
 
