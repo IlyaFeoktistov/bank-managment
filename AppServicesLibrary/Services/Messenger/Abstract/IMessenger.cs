@@ -1,4 +1,6 @@
-﻿namespace AppServicesLibrary.Services.Messenger.Abstract
+﻿using System;
+
+namespace AppServicesLibrary.Services.Messenger.Abstract
 {
     internal interface IMessenger
     {
