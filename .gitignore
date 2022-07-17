@@ -226,3 +226,8 @@ FakesAssemblies/
 *.opt
 
 # Visual 
+
+*.sln
+*.csproj
+*.csproj.user
+obj/
