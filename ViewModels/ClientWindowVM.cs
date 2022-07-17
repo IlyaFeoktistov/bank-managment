@@ -1,12 +1,12 @@
 ﻿using BankManagment.Models.Clients;
-using BankManagment.Services.LoginManager;
+using BankManagment.Infrastructure.LoginManager;
 using BankManagment.Models.Users;
 using BankManagment.Models.Users.Abstract;
-using BankManagment.Services.Command.Abstract;
-using BankManagment.Services.Messenger;
+using BankManagment.Infrastructure.Command.Abstract;
 using BankManagment.ViewModels.Abstract;
 using System;
 using System.Windows.Input;
+using AppServicesLibrary.Services.Messenger;
 
 namespace BankManagment.ViewModels
 {

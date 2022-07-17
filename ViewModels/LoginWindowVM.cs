@@ -1,8 +1,8 @@
-﻿using BankManagment.Services.LoginManager;
+﻿using BankManagment.Infrastructure.LoginManager;
 using BankManagment.Models.Users;
 using BankManagment.Models.Users.Abstract;
-using BankManagment.Services.Command.Abstract;
-using BankManagment.Services.Messenger;
+using BankManagment.Infrastructure.Command.Abstract;
+using AppServicesLibrary.Services.Messenger;
 using BankManagment.ViewModels.Abstract;
 using BankManagment.Views;
 using System.Linq;

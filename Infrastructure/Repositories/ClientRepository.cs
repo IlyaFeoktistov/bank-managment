@@ -1,11 +1,11 @@
 ﻿using BankManagment.Models.Clients;
-using BankManagment.Services.DataReader;
-using BankManagment.Services.DataWriter;
-using BankManagment.Services.DataWriter.Writers;
 using System;
 using System.Collections.ObjectModel;
+using AppServicesLibrary.Services.DataWriter;
+using AppServicesLibrary.Services.DataWriter.Writers;
+using AppServicesLibrary.Services.DataReader;
 
-namespace BankManagment.Services.Repositories
+namespace BankManagment.Infrastructure.Repositories
 {
     internal class ClientRepository
     {

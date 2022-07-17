@@ -1,4 +1,4 @@
-﻿namespace BankManagment.Services.Repositories
+﻿namespace BankManagment.Infrastructure.Repositories
 {
     internal class Repository
     {

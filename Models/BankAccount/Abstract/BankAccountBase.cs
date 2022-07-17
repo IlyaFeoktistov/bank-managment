@@ -1,9 +1,7 @@
-﻿using BankManagment.Models.BankAccount.Currencies.Abstract;
+﻿using AppServicesLibrary.Services.NotifyPropertyChanged;
+using BankManagment.Models.BankAccount.Currencies.Abstract;
 using BankManagment.Models.BankAccount.Currencies.Exceptions;
 using BankManagment.Models.BankAccount.Exceptions;
-using BankManagment.Models.Clients;
-using BankManagment.Models.Users.Abstract;
-using BankManagment.Services.NotifyPropertyChanged;
 using System;
 using System.Collections.ObjectModel;
 
@@ -56,12 +54,16 @@ namespace BankManagment.Models.BankAccount.Abstract
             Currency.Credit(amount);
         }
 
+
         /// <summary>
         /// Отправляет ДС на счет
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="toAccount">На какой счет</param>
         /// <param name="amount">Сумма</param>
+        /// <exception cref="IsClosedException"></exception>
+        /// <exception cref="SameAccountException"></exception>
+        /// <exception cref="AccountNullReferenceException"></exception>
         /// <exception cref="EmptyAmountException"></exception>
         public void SendMoney<T>(T toAccount, float amount) where T : BankAccountBase
         {

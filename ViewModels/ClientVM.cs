@@ -1,16 +1,16 @@
 ﻿using BankManagment.Models.Clients;
-using BankManagment.Services.LoginManager;
+using BankManagment.Infrastructure.LoginManager;
 using BankManagment.Models.Users;
 using BankManagment.Models.Users.Abstract;
-using BankManagment.Services.Attributes.FiltredGetingProperties;
-using BankManagment.Services.Command.Abstract;
-using BankManagment.Services.Messenger;
+using BankManagment.Infrastructure.Command.Abstract;
 using BankManagment.ViewModels.Abstract;
 using BankManagment.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using BankManagment.Services.Repositories;
+using BankManagment.Infrastructure.Repositories;
+using AppServicesLibrary.Services.Messenger;
+using AppServicesLibrary.Services.Attributes.FiltredGetingProperties;
 
 namespace BankManagment.ViewModels
 {

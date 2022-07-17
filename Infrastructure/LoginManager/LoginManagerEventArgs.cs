@@ -1,6 +1,6 @@
 ﻿using BankManagment.Models.Users.Abstract;
 
-namespace BankManagment.Services.LoginManager
+namespace BankManagment.Infrastructure.LoginManager
 {
     public class LoginManagerEventArgs
     {

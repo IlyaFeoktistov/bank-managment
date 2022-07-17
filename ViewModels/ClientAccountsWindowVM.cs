@@ -2,15 +2,15 @@
 using BankManagment.Models.BankAccount.Abstract;
 using BankManagment.Models.BankAccount.Currencies.Abstract;
 using BankManagment.Models.Clients;
-using BankManagment.Services.Command.Abstract;
-using BankManagment.Services.Messenger;
-using BankManagment.Services.Repositories;
+using BankManagment.Infrastructure.Command.Abstract;
+using BankManagment.Infrastructure.Repositories;
 using BankManagment.ViewModels.Abstract;
 using BankManagment.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+using AppServicesLibrary.Services.Messenger;
 
 namespace BankManagment.ViewModels
 {

@@ -1,7 +1,7 @@
 ﻿using BankManagment.Models.Menu;
 using BankManagment.Models.Menu.Abstract;
 using BankManagment.Models.Menu.Items;
-using BankManagment.Services.Command.Abstract;
+using BankManagment.Infrastructure.Command.Abstract;
 using BankManagment.ViewModels.Abstract;
 using System.Collections.ObjectModel;
 using System.Linq;

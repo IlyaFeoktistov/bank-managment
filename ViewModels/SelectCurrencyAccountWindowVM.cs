@@ -2,8 +2,8 @@
 using BankManagment.Models.BankAccount.Abstract;
 using BankManagment.Models.BankAccount.Currencies;
 using BankManagment.Models.BankAccount.Currencies.Abstract;
-using BankManagment.Services.Command.Abstract;
-using BankManagment.Services.Messenger;
+using BankManagment.Infrastructure.Command.Abstract;
+using AppServicesLibrary.Services.Messenger;
 using BankManagment.ViewModels.Abstract;
 using System;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿namespace BankManagment.Services
+﻿namespace BankManagment.Infrastructure
 {
     internal static class Constants
     {

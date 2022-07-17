@@ -1,8 +1,8 @@
 ﻿using BankManagment.Models.BankAccount.Abstract;
 using BankManagment.Models.Clients;
-using BankManagment.Services.Command.Abstract;
-using BankManagment.Services.Messenger;
-using BankManagment.Services.Repositories;
+using BankManagment.Infrastructure.Command.Abstract;
+using AppServicesLibrary.Services.Messenger;
+using BankManagment.Infrastructure.Repositories;
 using BankManagment.ViewModels.Abstract;
 using System;
 using System.Collections.ObjectModel;

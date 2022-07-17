@@ -1,5 +1,5 @@
-﻿using BankManagment.Models.BankAccount.Currencies.Exceptions;
-using BankManagment.Services.NotifyPropertyChanged;
+﻿using AppServicesLibrary.Services.NotifyPropertyChanged;
+using BankManagment.Models.BankAccount.Currencies.Exceptions;
 
 namespace BankManagment.Models.BankAccount.Currencies.Abstract
 {

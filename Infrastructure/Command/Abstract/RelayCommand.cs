@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace BankManagment.Services.Command.Abstract
+namespace BankManagment.Infrastructure.Command.Abstract
 {
-    internal class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         private readonly Action<object?> execute;
         private readonly Func<object?, bool>? canExecute;

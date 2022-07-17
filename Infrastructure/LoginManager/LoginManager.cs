@@ -1,7 +1,7 @@
-﻿using BankManagment.Services.LoginManager.Abstract;
+﻿using BankManagment.Infrastructure.LoginManager.Abstract;
 using BankManagment.Models.Users.Abstract;
 
-namespace BankManagment.Services.LoginManager
+namespace BankManagment.Infrastructure.LoginManager
 {
     public class LoginManager : ILoginManager
     {

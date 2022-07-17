@@ -1,6 +1,6 @@
-﻿using BankManagment.Models.BankAccount.Abstract;
-using BankManagment.Services.Attributes.FiltredGetingProperties;
-using BankManagment.Services.NotifyPropertyChanged;
+﻿using AppServicesLibrary.Services.Attributes.FiltredGetingProperties;
+using AppServicesLibrary.Services.NotifyPropertyChanged;
+using BankManagment.Models.BankAccount.Abstract;
 using System;
 using System.Collections.ObjectModel;
 

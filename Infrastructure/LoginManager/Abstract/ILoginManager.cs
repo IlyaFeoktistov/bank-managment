@@ -1,6 +1,6 @@
 ﻿using BankManagment.Models.Users.Abstract;
 
-namespace BankManagment.Services.LoginManager.Abstract
+namespace BankManagment.Infrastructure.LoginManager.Abstract
 {
     public interface ILoginManager
     {

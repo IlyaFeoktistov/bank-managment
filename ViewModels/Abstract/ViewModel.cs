@@ -1,4 +1,4 @@
-﻿using BankManagment.Services.NotifyPropertyChanged;
+﻿using AppServicesLibrary.Services.NotifyPropertyChanged;
 using System;
 
 namespace BankManagment.ViewModels.Abstract
