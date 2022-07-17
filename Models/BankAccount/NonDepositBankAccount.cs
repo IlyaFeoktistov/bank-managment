@@ -6,7 +6,7 @@ namespace BankManagment.Models.BankAccount
 {
     internal class NonDepositBankAccount : BankAccountBase
     {
-        public NonDepositBankAccount(Client owner, Currency currency) : base(owner, currency, "Не депозитный")
+        public NonDepositBankAccount(Client owner, Currency currency, bool isClosed) : base(owner, currency, "Не депозитный", isClosed)
         {
         }
     }

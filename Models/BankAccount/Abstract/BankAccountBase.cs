@@ -11,15 +11,17 @@ namespace BankManagment.Models.BankAccount.Abstract
     {
         private bool isClosed;
 
-        public BankAccountBase(Client owner, Currency currency, string name)
+        public BankAccountBase(Client owner, Currency currency, string name, bool isClosed)
         {
             Owner = owner;
             Currency = currency;
             Name = name;
 
+            this.isClosed = isClosed;
+
             Currency.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
 
-            OpenAccount();
+            //OpenAccount();
         }
 
         public string Name { get; }

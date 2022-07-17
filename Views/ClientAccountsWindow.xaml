@@ -27,9 +27,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding Currency.Amount}"/>
+                            <TextBlock Text="{Binding Currency.Amount, StringFormat='Сумма счета: {0}'}"/>
                             <TextBlock Text="{Binding Currency.Name}"/>
-                            <TextBlock Text="{Binding IsClosed}"/>
+                            <TextBlock Text="{Binding IsClosed, StringFormat='Счет закрыт: {0}'}"/>
                             <TextBlock Text="{Binding Name}"/>
                         </StackPanel>
                     </DataTemplate>
@@ -46,7 +46,7 @@
                     CommandParameter="{Binding AmountDeposit}"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Управление счетом"
+            <GroupBox Header="Управление переводами"
                       HorizontalAlignment="Left"
                       VerticalAlignment="Top">
                 <StackPanel>
@@ -55,7 +55,6 @@
                     <Label Content="Кому:"/>
                     <TextBlock DataContext="{Binding SelectedToAccount.Owner}" Text="{Binding Name}"/>
                     <TextBlock DataContext="{Binding SelectedToAccount.Currency}" Text="{Binding Name}"/>
-                    <TextBlock DataContext="{Binding SelectedToAccount.Currency}" Text="{Binding CurrencyCode}"/>
                     <Button Content="Выбрать счет"
                     Command="{Binding SelectClientAccount}"/>
                     <Button Content="Отправить"

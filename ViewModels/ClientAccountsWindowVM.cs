@@ -9,7 +9,6 @@ using BankManagment.ViewModels.Abstract;
 using BankManagment.Views;
 using System;
 using System.Collections.ObjectModel;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 
@@ -76,7 +75,9 @@ namespace BankManagment.ViewModels
             set
             {
                 SetProperty(ref selectedFromAccount, value);
-                selectedFromAccount.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
+
+                if(selectedFromAccount != null)
+                    selectedFromAccount.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
             } 
         }
         public BankAccountBase? SelectedToAccount 
@@ -85,7 +86,9 @@ namespace BankManagment.ViewModels
             set
             {
                 SetProperty(ref selectedToAccount, value);
-                selectedToAccount.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
+
+                if (selectedToAccount != null)
+                    selectedToAccount.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
             }
         }
 
@@ -172,8 +175,8 @@ namespace BankManagment.ViewModels
 
                     BankAccountBase account = result.isDeposit switch
                     {
-                        true => new DepositBankAccount(client, result.currency),
-                        false => new NonDepositBankAccount(client, result.currency)
+                        true => new DepositBankAccount(client, result.currency, false),
+                        false => new NonDepositBankAccount(client, result.currency, false)
                     };
 
                     client.AddBankAccount(account);
@@ -197,6 +200,7 @@ namespace BankManagment.ViewModels
             try
             {
                 selectedFromAccount?.SendMoney(selectedToAccount!, amountToSend);
+                MessageBox.Show($"{amountToSend} было отправлено!");
             }
             catch (Exception e)
             {
@@ -206,18 +210,21 @@ namespace BankManagment.ViewModels
             Repository.ClientRepository.UpdateClient(oldClient, client);
         }
 
-        private bool CanDeposit(object? obj) => obj is not null;
+        private bool CanDeposit(object? obj) => obj != null;
         private void Deposit(object? obj)
         {
             var oldClient = client.Copy();
+
             try
             {
-                selectedFromAccount?.Deposit(float.Parse(obj?.ToString()));
+                selectedFromAccount?.Deposit(float.Parse(obj?.ToString()!));
+                MessageBox.Show($"Счет был пополнен на сумму {obj?.ToString()}");
             }
             catch(Exception e)
             {
                 MessageBox.Show(e.Message);
             }
+
             Repository.ClientRepository.UpdateClient(oldClient, client);
         }
     }
