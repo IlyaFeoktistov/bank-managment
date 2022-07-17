@@ -11,7 +11,7 @@ namespace BankManagment.Models.BankAccount
 {
     internal class DepositBankAccount : BankAccountBase
     {
-        public DepositBankAccount(Client owner, Currency currency, bool isClosed) : base(owner, currency, "Депозитный", isClosed)
+        public DepositBankAccount(int ownerId, Currency currency, bool isClosed) : base(ownerId, currency, "Депозитный", isClosed)
         {
         }
     }

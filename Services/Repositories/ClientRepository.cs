@@ -53,6 +53,11 @@ namespace BankManagment.Services.Repositories
 
         public ObservableCollection<Client> GetClients() => clients;
 
+        public Client? GetClientById(int id)
+        {
+            return clients[id];
+        }
+
         public int GetCount() => clients.Count;
 
         private void UpdateRepository()

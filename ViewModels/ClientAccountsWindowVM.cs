@@ -77,7 +77,10 @@ namespace BankManagment.ViewModels
                 SetProperty(ref selectedFromAccount, value);
 
                 if(selectedFromAccount != null)
+                {
                     selectedFromAccount.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
+                    OnPropertyChanged(nameof(FromClient));
+                }
             } 
         }
         public BankAccountBase? SelectedToAccount 
@@ -88,7 +91,32 @@ namespace BankManagment.ViewModels
                 SetProperty(ref selectedToAccount, value);
 
                 if (selectedToAccount != null)
+                {
                     selectedToAccount.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
+                    OnPropertyChanged(nameof(ToClient));
+                }
+            }
+        }
+
+        public Client? ToClient 
+        {
+            get
+            {
+                if (selectedToAccount != null)
+                    return Repository.ClientRepository.GetClientById(selectedToAccount.OwnerId);
+                else
+                    return null;
+            }
+        }
+
+        public Client? FromClient
+        {
+            get
+            {
+                if (selectedFromAccount != null)
+                    return Repository.ClientRepository.GetClientById(selectedFromAccount.OwnerId);
+                else
+                    return null;
             }
         }
 
@@ -130,6 +158,8 @@ namespace BankManagment.ViewModels
         private void CloseAccount(object? account)
         {
             var oldClient = client.Copy();
+
+            selectedFromAccount?.AddHistoryRecord(AccountAction.CloseAccount);
 
             selectedFromAccount?.CloseAccount();
 
@@ -175,9 +205,11 @@ namespace BankManagment.ViewModels
 
                     BankAccountBase account = result.isDeposit switch
                     {
-                        true => new DepositBankAccount(client, result.currency, false),
-                        false => new NonDepositBankAccount(client, result.currency, false)
+                        true => new DepositBankAccount(client.Id, result.currency, false),
+                        false => new NonDepositBankAccount(client.Id, result.currency, false)
                     };
+
+                    account.AddHistoryRecord(AccountAction.OpenAccount);
 
                     client.AddBankAccount(account);
 
@@ -200,6 +232,19 @@ namespace BankManagment.ViewModels
             try
             {
                 selectedFromAccount?.SendMoney(selectedToAccount!, amountToSend);
+
+                selectedFromAccount?.AddHistoryRecord(AccountAction.Transfer, 
+                    $"Кому: {ToClient?.Surname} " +
+                    $"{ToClient?.Name} " +
+                    $"{ToClient?.Patronymic} " +
+                    $"Сумма: {amountToSend}");
+
+                selectedToAccount?.AddHistoryRecord(AccountAction.Deposit,
+                    $"От кого {FromClient?.Surname} " +
+                    $"{FromClient?.Name} " +
+                    $"{FromClient?.Patronymic} " +
+                    $"Сумма: {amountToSend}");
+
                 MessageBox.Show($"{amountToSend} было отправлено!");
             }
             catch (Exception e)
@@ -219,6 +264,8 @@ namespace BankManagment.ViewModels
             {
                 selectedFromAccount?.Deposit(float.Parse(obj?.ToString()!));
                 MessageBox.Show($"Счет был пополнен на сумму {obj?.ToString()}");
+
+                selectedFromAccount?.AddHistoryRecord(AccountAction.Deposit, $"Внесена сумма: {amountToSend}");
             }
             catch(Exception e)
             {

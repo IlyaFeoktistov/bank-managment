@@ -11,5 +11,7 @@
         void OpenAccount();
 
         void CloseAccount();
+
+        void AddHistoryRecord(AccountAction action, string details = "");
     }
 }

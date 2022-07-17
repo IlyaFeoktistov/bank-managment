@@ -36,32 +36,56 @@
                 </ListView.ItemTemplate>
             </ListView>
         </DockPanel>
-        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <GroupBox Header="Счет" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <StackPanel HorizontalAlignment="Left">
-                    <Label Content="Сумма депозита:"/>
-                    <TextBox Text="{Binding AmountDeposit}"/>
-                    <Button Content="Пополнить счет"
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <GroupBox Header="Счет" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <StackPanel HorizontalAlignment="Left">
+                        <Label Content="Сумма депозита:"/>
+                        <TextBox Text="{Binding AmountDeposit}"/>
+                        <Button Content="Пополнить счет"
                     Command="{Binding DepositCommand}"
                     CommandParameter="{Binding AmountDeposit}"/>
-                </StackPanel>
-            </GroupBox>
-            <GroupBox Header="Управление переводами"
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Управление переводами"
                       HorizontalAlignment="Left"
                       VerticalAlignment="Top">
-                <StackPanel>
-                    <Label Content="Сумма:"/>
-                    <TextBox Text="{Binding AmountToSend}"/>
-                    <Label Content="Кому:"/>
-                    <TextBlock DataContext="{Binding SelectedToAccount.Owner}" Text="{Binding Name}"/>
-                    <TextBlock DataContext="{Binding SelectedToAccount.Currency}" Text="{Binding Name}"/>
-                    <Button Content="Выбрать счет"
+                    <StackPanel>
+                        <Label Content="Сумма:"/>
+                        <TextBox Text="{Binding AmountToSend}"/>
+                        <Label Content="Кому:"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock DataContext="{Binding ToClient}" Text="{Binding Surname}"/>
+                            <TextBlock DataContext="{Binding ToClient}" Text="{Binding Name, StringFormat=' {0}'}"/>
+                            <TextBlock DataContext="{Binding ToClient}" Text="{Binding Patronymic, StringFormat=' {0}'}"/>
+                        </StackPanel>
+                        <TextBlock DataContext="{Binding SelectedToAccount.Currency}" Text="{Binding Name}"/>
+                        <Button Content="Выбрать счет"
                     Command="{Binding SelectClientAccount}"/>
-                    <Button Content="Отправить"
+                        <Button Content="Отправить"
                     Command="{Binding SendMoneyCommand}"
                     CommandParameter="{Binding SelectedToAccount}"/>
-                </StackPanel>
-            </GroupBox>
-        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <ListView Grid.Row="1"
+                     DataContext="{Binding SelectedFromAccount}"
+                     ItemsSource="{Binding History}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Id}"/>
+                            <TextBlock Text="{Binding Time, StringFormat='HH:mm dd.MM.yy'}"/>
+                            <TextBlock Text="{Binding AccountAction.Value}"/>
+                            <TextBlock Text="{Binding Details}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </Grid>
 </Window>

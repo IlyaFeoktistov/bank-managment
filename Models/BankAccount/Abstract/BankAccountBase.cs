@@ -4,6 +4,8 @@ using BankManagment.Models.BankAccount.Exceptions;
 using BankManagment.Models.Clients;
 using BankManagment.Models.Users.Abstract;
 using BankManagment.Services.NotifyPropertyChanged;
+using System;
+using System.Collections.ObjectModel;
 
 namespace BankManagment.Models.BankAccount.Abstract
 {
@@ -11,28 +13,30 @@ namespace BankManagment.Models.BankAccount.Abstract
     {
         private bool isClosed;
 
-        public BankAccountBase(Client owner, Currency currency, string name, bool isClosed)
+        public BankAccountBase(int ownerId, Currency currency, string name, bool isClosed)
         {
-            Owner = owner;
+            OwnerId = ownerId;
             Currency = currency;
             Name = name;
 
             this.isClosed = isClosed;
 
-            Currency.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
+            History = new ObservableCollection<AccountHistory>();
 
-            //OpenAccount();
+            Currency.PropertyChanged += (s, e) => { OnPropertyChanged(e.PropertyName); };
         }
 
         public string Name { get; }
 
-        public Client Owner { get; }
+        public int OwnerId { get; }
         public Currency Currency { get; }
         public bool IsClosed 
         {
             get => isClosed;
             private set => SetProperty(ref isClosed, value); 
         }
+
+        public ObservableCollection<AccountHistory> History { get; }
 
         public void OpenAccount() => IsClosed = false;
 
@@ -62,7 +66,8 @@ namespace BankManagment.Models.BankAccount.Abstract
         public void SendMoney<T>(T toAccount, float amount) where T : BankAccountBase
         {
             if (IsClosed) throw new IsClosedException();
-            if (toAccount is null || toAccount.Equals(this)) return;
+            if (Equals(toAccount, this)) throw new SameAccountException();
+            if (toAccount is null) throw new AccountNullReferenceException();
             
             try
             {
@@ -81,6 +86,11 @@ namespace BankManagment.Models.BankAccount.Abstract
             if (IsClosed) throw new IsClosedException();
 
             Currency.Credit(amount);
+        }
+
+        public void AddHistoryRecord(AccountAction action, string details = "")
+        {
+            History.Add(new AccountHistory(History.Count, DateTime.Now, action, details));
         }
     }
 }
