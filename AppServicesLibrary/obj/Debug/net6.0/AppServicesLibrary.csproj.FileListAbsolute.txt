@@ -1,0 +1,12 @@
+C:\Users\ffuul\source\repos\BankManagment\AppServicesLibrary\bin\Debug\net6.0\AppServicesLibrary.deps.json
+C:\Users\ffuul\source\repos\BankManagment\AppServicesLibrary\bin\Debug\net6.0\AppServicesLibrary.dll
+C:\Users\ffuul\source\repos\BankManagment\AppServicesLibrary\bin\Debug\net6.0\AppServicesLibrary.pdb
+C:\Users\ffuul\source\repos\BankManagment\AppServicesLibrary\obj\Debug\net6.0\AppServicesLibrary.csproj.AssemblyReference.cache
+C:\Users\ffuul\source\repos\BankManagment\AppServicesLibrary\obj\Debug\net6.0\AppServicesLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ffuul\source\repos\BankManagment\AppServicesLibrary\obj\Debug\net6.0\AppServicesLibrary.AssemblyInfoInputs.cache
+C:\Users\ffuul\source\repos\BankManagment\AppServicesLibrary\obj\Debug\net6.0\AppServicesLibrary.AssemblyInfo.cs
+C:\Users\ffuul\source\repos\BankManagment\AppServicesLibrary\obj\Debug\net6.0\AppServicesLibrary.csproj.CoreCompileInputs.cache
+C:\Users\ffuul\source\repos\BankManagment\AppServicesLibrary\obj\Debug\net6.0\AppServicesLibrary.dll
+C:\Users\ffuul\source\repos\BankManagment\AppServicesLibrary\obj\Debug\net6.0\refint\AppServicesLibrary.dll
+C:\Users\ffuul\source\repos\BankManagment\AppServicesLibrary\obj\Debug\net6.0\AppServicesLibrary.pdb
+C:\Users\ffuul\source\repos\BankManagment\AppServicesLibrary\obj\Debug\net6.0\ref\AppServicesLibrary.dll
