@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace AppServicesLibrary.Services.Messenger.Abstract
+﻿namespace AppServicesLibrary.Services.Messenger.Abstract
 {
     internal interface IMessenger
     {
-        void Register<T>(object recipient, Action<T> action);
+        public void Register<T>(object recipient, Action<T> action, object? context = null);
 
-        void UnRegister(object recipient);
+        public void UnRegister(object recipient, object? context = null);
 
-        void Send<T>(T message);
+        public void Send<T>(T message, object? context = null);
     }
 }

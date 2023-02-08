@@ -4,7 +4,6 @@ using BankManagment.Infrastructure.Command.Abstract;
 using AppServicesLibrary.Services.Messenger;
 using BankManagment.Infrastructure.Repositories;
 using BankManagment.ViewModels.Abstract;
-using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -15,14 +14,14 @@ namespace BankManagment.ViewModels
         private ICommand? selectAccount;
 
         private Client? selectedClient;
-        public SelectClientAccountWindowVM()
-        {
-            
-        }
+
+        public SelectClientAccountWindowVM() { }
 
         public override string ViewModelName => "SelectClientAccountWindow";
 
-        public ObservableCollection<Client> Clients { get => Repository.ClientRepository.GetClients(); }
+        public ObservableCollection<Client> Clients => 
+            Repository.ClientRepository.GetClients();
+
         public Client? SelectedClient 
         {
             get => selectedClient;
@@ -30,7 +29,8 @@ namespace BankManagment.ViewModels
         }
         public BankAccountBase? SelectedAccount { get; set; }
 
-        public ICommand SelectAccount { get => selectAccount ??= new RelayCommand(PerformSelectAccount); }
+        public ICommand SelectAccount => 
+            selectAccount ??= new RelayCommand(PerformSelectAccount);
 
         private void PerformSelectAccount(object? obj)
         {

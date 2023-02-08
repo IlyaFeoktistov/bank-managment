@@ -64,10 +64,7 @@ namespace BankManagment.ViewModels
             set => SetProperty(ref amountToSend, value);
         }
 
-        public ObservableCollection<BankAccountBase> Accounts 
-        { 
-            get => client.BankAccounts;
-        }
+        public ObservableCollection<BankAccountBase> Accounts => client.BankAccounts;
 
         public BankAccountBase? SelectedFromAccount 
         { 
@@ -102,10 +99,9 @@ namespace BankManagment.ViewModels
         {
             get
             {
-                if (selectedToAccount != null)
-                    return Repository.ClientRepository.GetClientById(selectedToAccount.OwnerId);
-                else
-                    return null;
+                if (selectedToAccount == null) return null;
+                
+                return Repository.ClientRepository.GetClientById(selectedToAccount.OwnerId);
             }
         }
 
@@ -113,10 +109,9 @@ namespace BankManagment.ViewModels
         {
             get
             {
-                if (selectedFromAccount != null)
-                    return Repository.ClientRepository.GetClientById(selectedFromAccount.OwnerId);
-                else
-                    return null;
+                if (selectedFromAccount == null) return null;
+
+                return Repository.ClientRepository.GetClientById(selectedFromAccount.OwnerId);
             }
         }
 
@@ -138,8 +133,9 @@ namespace BankManagment.ViewModels
 
             selectAccountClientWindow.DataContext = vm;
 
-            Messenger.Default.Register(this,
-                delegate (BankAccountBase account)
+            Messenger.Default.Register(
+                this, 
+                (BankAccountBase account) =>
                 {
                     SelectedToAccount = account;
                 },

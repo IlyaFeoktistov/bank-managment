@@ -14,7 +14,6 @@ namespace BankManagment.ViewModels
     {
         private readonly User[] users;
         private User selectedUser;
-        public override string ViewModelName => "LoginWindow";
 
         public LoginWindowVM()
         {
@@ -28,6 +27,8 @@ namespace BankManagment.ViewModels
 
             LoginCommand = new RelayCommand(OnLoginCommandExecute, null);
         }
+
+        public override string ViewModelName => "LoginWindow";
 
         private void OnLoginCommandExecute(object? obj)
         {

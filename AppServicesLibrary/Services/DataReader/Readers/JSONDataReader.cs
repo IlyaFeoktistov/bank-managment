@@ -1,6 +1,5 @@
 ﻿using AppServicesLibrary.Services.DataReader.Abstract;
 using Newtonsoft.Json;
-using System.IO;
 
 namespace AppServicesLibrary.Services.DataReader
 {

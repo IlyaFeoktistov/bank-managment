@@ -29,7 +29,9 @@
         {
             unchecked
             {
-                return ((Recipient != null ? Recipient.GetHashCode() : 0) * 397) ^ (Context != null ? Context.GetHashCode() : 0);
+                var recipientHash = Recipient != null ? Recipient.GetHashCode() : 0;
+                var contextHash = Context != null ? Context.GetHashCode() : 0;
+                return (recipientHash * 397) ^ contextHash;
             }
         }
     }

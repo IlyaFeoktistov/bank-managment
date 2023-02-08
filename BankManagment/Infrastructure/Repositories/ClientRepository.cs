@@ -36,7 +36,7 @@ namespace BankManagment.Infrastructure.Repositories
 
         public void UpdateClient(Client oldClient, Client newClient)
         {
-            var oldIndex = clients.IndexOf(oldClient);
+            //var oldIndex = clients.IndexOf(oldClient);
 
             //if (oldIndex == -1) return;
 

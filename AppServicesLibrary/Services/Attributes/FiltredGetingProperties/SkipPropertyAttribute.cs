@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace AppServicesLibrary.Services.Attributes.FiltredGetingProperties
 {
@@ -12,7 +10,7 @@ namespace AppServicesLibrary.Services.Attributes.FiltredGetingProperties
         public static PropertyInfo[] GetFilteredProperties(this Type type)
         {
             return type.GetProperties()
-              .Where(pi => !Attribute.IsDefined(pi, typeof(SkipPropertyAttribute)))
+              .Where(propertyInfo => !Attribute.IsDefined(propertyInfo, typeof(SkipPropertyAttribute)))
               .ToArray();
         }
     }

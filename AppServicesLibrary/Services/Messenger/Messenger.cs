@@ -1,7 +1,4 @@
 ﻿using AppServicesLibrary.Services.Messenger.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AppServicesLibrary.Services.Messenger
 {
@@ -12,33 +9,15 @@ namespace AppServicesLibrary.Services.Messenger
 
         private Messenger() { }
 
-        public static Messenger Default 
-        { 
-            get 
-            { 
-                if(instance == null)
-                    instance = new Messenger();
+        public static Messenger Default => instance ??= new Messenger();
 
-                return instance; 
-            } 
-        }
-
-        public void Register<T>(object recipient, Action<T> action)
-        {
-            Register(recipient, action, null);
-        }
-
-        public void Register<T>(object recipient, Action<T> action, object? context)
+        public void Register<T>(object recipient, Action<T> action, object? context = null)
         {
             var key = new MessengerKey(recipient, context);
             RegisteredRecipients.Add(key, action);
         }
 
-        public void Send<T>(T message)
-        {
-            Send(message, null);
-        }
-        public void Send<T>(T message, object? context)
+        public void Send<T>(T message, object? context = null)
         {
             IEnumerable<KeyValuePair<MessengerKey, object>> result;
 
@@ -62,12 +41,7 @@ namespace AppServicesLibrary.Services.Messenger
             }
         }
 
-        public void UnRegister(object recipient)
-        {
-            UnRegister(recipient, null);
-        }
-
-        public void UnRegister(object recipient, object? context)
+        public void UnRegister(object recipient, object? context = null)
         {
             var key = new MessengerKey(recipient, context);
             RegisteredRecipients.Remove(key);

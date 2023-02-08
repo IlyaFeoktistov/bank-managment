@@ -49,10 +49,9 @@ namespace BankManagment.ViewModels
         public string Phone { get; set; } = String.Empty;
         public string Passport { get; set; } = String.Empty;
 
-        public ICommand SaveCommand 
-        { 
-            get => saveCommand ??= new RelayCommand(OnSaveCommandExecute, CanSaveCommandExecuted);
-        }
+        public ICommand SaveCommand => 
+            saveCommand ??= new RelayCommand(OnSaveCommandExecute, CanSaveCommandExecuted);
+        
 
         private bool CanSaveCommandExecuted(object? arg)
         {
@@ -64,8 +63,8 @@ namespace BankManagment.ViewModels
                     && Phone != String.Empty
                     && Passport != String.Empty;
             }
-            else
-                return Phone != String.Empty;
+
+            return Phone != String.Empty;
         }
 
         private void OnSaveCommandExecute(object? obj)
@@ -100,7 +99,12 @@ namespace BankManagment.ViewModels
 
                 newClient.CopyRecords(currentClient.Records);
 
-                Messenger.Default.Send(new Client[2] { currentClient, newClient }, "ModifyClient");
+                Messenger.Default.Send(new Client[2] 
+                { 
+                    currentClient, 
+                    newClient 
+                }, 
+                "ModifyClient");
             }
         }
     }

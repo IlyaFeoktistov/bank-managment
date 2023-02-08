@@ -10,14 +10,6 @@ namespace BankManagment
         {
             base.OnStartup(e);
 
-            //MainWindow mainWindow = new()
-            //{
-            //    DataContext = new MainWindowVM()
-            //    {
-            //        RequestClose = new System.Action(() => MainWindow.Close())
-            //    }
-            //};
-
             LoginWindowVM loginWindowVM = new();
             LoginWindow loginWindow = new();
 
@@ -25,8 +17,6 @@ namespace BankManagment
             loginWindow.DataContext = loginWindowVM;
 
             loginWindow.Show();
-            //loginWindow.Close();
-            //mainWindow.Show();
         }
     }
 }

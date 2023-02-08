@@ -1,11 +1,8 @@
-﻿using BankManagment.Models.BankAccount;
-using BankManagment.Models.BankAccount.Abstract;
-using BankManagment.Models.BankAccount.Currencies;
+﻿using BankManagment.Models.BankAccount.Currencies;
 using BankManagment.Models.BankAccount.Currencies.Abstract;
 using BankManagment.Infrastructure.Command.Abstract;
 using AppServicesLibrary.Services.Messenger;
 using BankManagment.ViewModels.Abstract;
-using System;
 using System.Linq;
 using System.Windows.Input;
 
@@ -33,14 +30,12 @@ namespace BankManagment.ViewModels
 
         public bool IsDeposit { get; set; }
 
-        public ICommand SelectCurrency 
-        { 
-            get => selectCurrency ??= new RelayCommand(PerformSelectCurrency); 
-        }
+        public ICommand SelectCurrency => 
+            selectCurrency ??= new RelayCommand(PerformSelectCurrency);
 
         private void PerformSelectCurrency(object? obj)
         {
-            var result = (currency:SelectedCurrency, isDeposit: IsDeposit);
+            var result = (currency: SelectedCurrency, isDeposit: IsDeposit);
             Messenger.Default.Send(result, "GetCurrency");
             RequestClose?.Invoke();
         }
